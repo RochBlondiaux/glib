@@ -26,12 +26,12 @@ OBJ_PATH = ./objs/
 INCDIR = includes
 
 # Name
-SRC_NAME = vectors/vector2f.c \
+SRC_NAME = glib.c \
+			vectors/vector2f.c \
 			vectors/vector3f.c \
-			graphics/mlx.c \
 			graphics/draw.c \
-			maths/isometric. \
 			maths/rotations.c \
+			maths/projections.c \
 			utils/math_utils.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)

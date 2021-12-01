@@ -1,4 +1,4 @@
-#include "../../includes/glib.h"
+#include "../includes/glib.h"
 
 void	glib_init(t_window *window)
 {

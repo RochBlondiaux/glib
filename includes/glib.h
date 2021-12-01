@@ -83,11 +83,20 @@ void	register_key_hook(t_window *window, int (*f)(), void *param);
 void	draw_pixel(t_window window, t_v2f v, int color);
 
 /**
+ * Projections
+ */
+t_v2f	isometric_projection(t_v3f v);
+t_v2f	parallel_projection(t_v3f v, int angle);
+
+/**
  * Maths
  */
 t_v2f	v2f_difference(t_v2f f, t_v2f s);
 t_v2f	get_sign(t_v2f f, t_v2f s);
 double	deg_to_rad(int degree);
+t_v3f	rotate_x(t_v3f v, double alpha);
+t_v3f	rotate_y(t_v3f v, double beta);
+t_v3f	rotate_z(t_v3f v, double gamma);
 
 /**
  * Utils
