@@ -32,7 +32,8 @@ SRC_NAME = glib.c \
 			graphics/draw.c \
 			maths/rotations.c \
 			maths/projections.c \
-			utils/math_utils.c
+			utils/math_utils.c \
+			utils/color.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

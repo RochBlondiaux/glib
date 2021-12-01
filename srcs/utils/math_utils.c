@@ -24,3 +24,15 @@ double	deg_to_rad(int degree)
 {
 	return (degree * 3.14159265F / 180.0F);
 }
+
+double	percent(int start, int end, int current)
+{
+	double	placement;
+	double	distance;
+
+	placement = current - start;
+	distance = end - start;
+	if (distance == 0)
+		return (1.0);
+	return (placement / distance);
+}

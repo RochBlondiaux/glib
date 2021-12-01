@@ -101,5 +101,9 @@ t_v3f	rotate_z(t_v3f v, double gamma);
 /**
  * Utils
  */
+int		convert_rgba(int a, int r, int g, int b);
+int		rgb(int r, int g, int b);
+double	percent(int start, int end, int current);
+int		get_light(int start, int end, double percentage);
 
 #endif
