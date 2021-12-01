@@ -35,20 +35,58 @@
 
 `@root`
 
-* [**📁 includes:**](includes/) contains all prototypes and libraries includes.
+* [**📁 includes:**](includes/) contains all prototypes, structures and libraries includes.
+* [**📁 mlx:**](mlx/) contains the minilibx sources.
 * [**📁 srcs:**](srcs/) contains all project sources files.
-    * [**📁 gnl:**](srcs/gnl/) contains the get_next_line project sources.
-    * [**📁 libft:**](srcs/libft/) contains the libft project sources.
-    * [**📁 mlx:**](srcs/mlx/) contains the [minilibx](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html) sources.
-    * [**📁 parsing:**](srcs/parsing/) contains all parsing related files.
-    * [**📁 hooks:**](srcs/hooks/) contains all keys hooks files.
-    * [**📁 graphics:**](srcs/hooks/) contains all graphics related files.
-    * [**📁 utils:**](srcs/utils/) contains all utilities files.
+  * [**📁 maths:**](srcs/maths/) contains all maths related files. 
+  * [**📁 maths:**](srcs/maths/) contains all maths related files.
+  * [**📁 vectors:**](srcs/graphics/) contains all vectors (2D/3D) related files.
+  * [**📁 utils:**](srcs/utils/) contains all utilities files.
 
-`@/srcs/main.c`
-* `main` - Start the program and setup the window.
-* `setup_image` - setup image in window.
-* `render` - render image to window.
+`@/srcs/glib.c`
+* `glib_init` - Initialize window and image with minilibx.
+* `glib_start` - Initialize & start rendering.
+* `glib_stop` - Destroy image and window.
+* `register_loop_hook` - mlx_loop_hook function wrapped.
+* `rregister_key_hook` - mlx_key_hook function wrapped.
+
+`@/graphics/draw.c`
+* `draw_pixel` - Draw a pixel on image.
+* `draw_line` - Draw line between to vector.
+
+`@/maths/projections.c`
+* `isometric_projection` - Project point with an isometric function.
+* `parallel_projection` - Project point with a parallel function.
+
+`@/maths/rotations.c`
+* `rotate_x` - Rotate a 3D vector on x-axis.
+* `rotate_y` - Rotate a 3D vector on y-axis.
+* `rotate_z` - Rotate a 3D vector on z-axis.
+
+`@/vectors/vector2f.c`
+* `v2f` - Create a 2D vector from its coordinates.
+* `add_v2f` - Add 2D vector's coordinates.
+* `sub_v2f` - Subtract 2D vector's coordinates.
+* `mul_v2f` - Multiply 2D vector's coordinates.
+* `div_v2f` - Divide 2D vector's coordinates.
+
+`@/vectors/vector3f.c`
+* `v3f` - Create a 3D vector from its coordinates.
+* `add_v3f` - Add 3D vector's coordinates.
+* `sub_v3f` - Subtract 3D vector's coordinates.
+* `mul_v3f` - Multiply 3D vector's coordinates.
+* `div_v3f` - Divide 3D vector's coordinates.
+
+`@/utils/color.c`
+* `convert_rgba` - Convert rgba to hexadecimal color.
+* `rgb` - Convert rgb to hexadecimal color.
+* `get_light` - Get light at a certain point in space.
+
+`@/utils/math_utils.c`
+* `v2f_difference` - Get absolute difference between to 2D vector.
+* `get_sign` - 
+* `deg_to_rad` - Convert degrees to radian.
+* `percent` - Get percentage from min, max & current.
 
 ## 🛠️ Usage
 
