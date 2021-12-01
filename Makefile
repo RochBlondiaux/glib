@@ -12,7 +12,7 @@ CYAN        = \033[1;36m
 WHITE       = \033[1;37m
 
 # SYMBOLS
-INFO = $(WHITE)[$(BLUE)ℹ️$(WHITE)]
+INFO = $(WHITE)[$(BLUE)ℹ️$(WHITE)] $(NOC)
 SUCCESS = $(WHITE)[$(GREEN)✅$(WHITE)] $(GREEN)
 WARNING = $(WHITE)[$(YELLOW)⚠️$(WHITE)] $(YELLOW)
 ERROR = $(WHITE)[$(RED)❌$(WHITE)] $(RED)
@@ -29,6 +29,10 @@ INCDIR = includes
 SRC_NAME = vectors/vector2f.c \
 			vectors/vector3f.c \
 			graphics/mlx.c \
+			graphics/draw.c \
+			maths/isometric. \
+			maths/rotations.c \
+			utils/math_utils.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -78,10 +82,9 @@ clean:
 	@make -C $(MLX) clean
 	@echo "$(SUCCESS)Minilibx files deleted successfully!$(NOC)"
 
-fclean: clean
+fclean:clean
 	@echo "$(INFO)Deleting $(NAME)...$(NOC)"
-	@rm -rf $(NAME)
+	@rm -f $(NAME)
 	@echo "$(SUCCESS)$(NAME) deleted successfully!$(NOC)"
-	@make -C $(FT) fclean
 
 re: fclean all

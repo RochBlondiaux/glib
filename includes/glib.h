@@ -44,6 +44,7 @@ typedef struct s_img
 typedef struct s_window {
 	void	*mlx;
 	void	*win;
+	char	*title;
 	int		width;
 	int		height;
 	t_img	img;
@@ -68,15 +69,28 @@ t_v3f	mul_v3f(t_v3f v, int x, int y, int z);
 t_v3f	div_v3f(t_v3f v, int x, int y, int z);
 
 /**
+ * System
+ */
+void	glib_init(t_window *window);
+void	glib_start(t_window *window);
+void	glib_stop(t_window *window);
+void	register_loop_hook(t_window *window, int (*f)(), void *param);
+void	register_key_hook(t_window *window, int (*f)(), void *param);
+
+/**
  * Graphics
  */
-void	init_glib(t_window *window);
+void	draw_pixel(t_window window, t_v2f v, int color);
 
 /**
  * Maths
  */
+t_v2f	v2f_difference(t_v2f f, t_v2f s);
+t_v2f	get_sign(t_v2f f, t_v2f s);
+double	deg_to_rad(int degree);
 
 /**
  * Utils
  */
+
 #endif
