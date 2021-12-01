@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   glib.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/01 14:46:12 by rblondia          #+#    #+#             */
+/*   Updated: 2021/12/01 14:46:15 by rblondia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GLIB_H
 # define GLIB_H
 
@@ -9,7 +21,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <errno.h>
-#include <stdio.h>
+# include <stdio.h>
 
 # include "../mlx/mlx.h"
 
