@@ -1,3 +1,20 @@
+_mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+I := $(patsubst %/,%,$(dir $(_mkfile_path)))
+
+ifneq ($(words $(MAKECMDGOALS)),1)
+.DEFAULT_GOAL = all
+%:
+	@$(MAKE) $@ --no-print-directory -rRf $(firstword $(MAKEFILE_LIST))
+else
+ifndef ECHO
+T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
+      -nrRf $(firstword $(MAKEFILE_LIST)) \
+      ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
+N := x
+C = $(words $N)$(eval N := x $N)
+ECHO = python $(I)/echo_progress.py --stepno=$C --nsteps=$T
+endif
+
 # COLORS
 NOC         = \033[0m
 BOLD        = \033[1m
@@ -18,12 +35,12 @@ WARNING = $(WHITE)[$(YELLOW)⚠️$(WHITE)] $(YELLOW)
 ERROR = $(WHITE)[$(RED)❌$(WHITE)] $(RED)
 
 # Binary
-NAME=glib
+NAME=libg.a
 
 # Path
 SRC_PATH = ./srcs/
 OBJ_PATH = ./objs/
-INCDIR = includes
+INCDIR = ./includes/
 
 # Name
 SRC_NAME = glib.c \
@@ -51,41 +68,43 @@ MLX_LNK	= -L ./mlx -l mlx -I /usr/X11/include -framework OpenGL -framework AppKi
 CC = gcc $(CFLAGS)
 CFLAGS = -Wall -Wextra -Werror -Imlx 
 
-all: obj $(FT_LIB) $(MLX_LIB) $(NAME)
+all: obj $(MLX_LIB) $(NAME)
 
 obj:
-	@echo "$(INFO)Creating objects folder... $(NOC)"
+	@echo "$(GREEN) ██████   $(RED) ██      ██ ██████$(NOC)"
+	@echo "$(GREEN)██        $(RED) ██      ██ ██   ██$(NOC)"
+	@echo "$(GREEN)██   ███  $(RED) ██      ██ ██████  $(NOC)"
+	@echo "$(GREEN)██    ██  $(RED) ██      ██ ██   ██$(NOC)"
+	@echo "$(GREEN) ██████   $(RED) ███████ ██ ██████  $(NOC)"
+	@echo " "
+	@echo "✅ Developed by Roch Blondiaux."
+	@echo " "
 	@mkdir -p $(OBJ_PATH)
 	@mkdir -p $(OBJ_PATH)/graphics
 	@mkdir -p $(OBJ_PATH)/maths
 	@mkdir -p $(OBJ_PATH)/vectors
 	@mkdir -p $(OBJ_PATH)/utils
-	@echo "$(SUCCESS)Objects folder created successfully$(NOC)"
 
 $(OBJ_PATH)%.o:$(SRC_PATH)%.c
 	@$(CC) $(CFLAGS) $(MLX_INC) -I $(INCDIR) -o $@ -c $<
+	@$(ECHO) Compiling $@
+	@sleep 0.01
+	@touch $@
 
 $(MLX_LIB):
-	@echo "$(INFO)Building minilibx library...$(NOC)"
 	@make -C $(MLX)
-	@echo "$(SUCCESS)Minilibx library built successfully!$(NOC)"
 
 $(NAME): $(OBJ)
-	@echo "$(INFO)Building $(NAME)...$(NOC)"
 	@ar rcs ${NAME} ${OBJ}
-	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
 
 clean:
-	@echo "$(INFO)Deleting .o files...$(NOC)"
 	@rm -rf $(OBJ_PATH)
-	@echo "$(SUCCESS).o files deleted successfully!$(NOC)"
-	@echo "$(INFO)Deleting minilibx files..."
-	@make -C $(MLX) clean
-	@echo "$(SUCCESS)Minilibx files deleted successfully!$(NOC)"
 
 fclean:clean
-	@echo "$(INFO)Deleting $(NAME)...$(NOC)"
 	@rm -f $(NAME)
-	@echo "$(SUCCESS)$(NAME) deleted successfully!$(NOC)"
 
 re: fclean all
+
+.PHONY: all clean obj all $(MLX_LIB) $(NAME) fclean
+
+endif

@@ -29,6 +29,7 @@
  * Constants
  */
 # define MLX_ERROR	"Cannot initialize window"
+# define UNIQ_BPP 4
 
 /**
  * Structures
@@ -36,12 +37,14 @@
 typedef struct s_v2f {
 	int	x;
 	int	y;
+	int	color;
 }		t_v2f;
 
 typedef struct s_v3f {
 	int	x;
 	int	y;
 	int	z;
+	int	color;
 }		t_v3f;
 
 typedef struct s_img
@@ -92,7 +95,9 @@ void	register_key_hook(t_window *window, int (*f)(), void *param);
 /**
  * Graphics
  */
-void	draw_pixel(t_window window, t_v2f v, int color);
+void	draw_pixel(t_window *window, t_v2f v, int color);
+void	draw_line(t_window *window, t_v2f f, t_v2f s, int color);
+void	draw_gradient_line(t_window *window, t_v2f f, t_v2f s);
 
 /**
  * Projections
@@ -106,9 +111,9 @@ t_v2f	parallel_projection(t_v3f v, int angle);
 t_v2f	v2f_difference(t_v2f f, t_v2f s);
 t_v2f	get_sign(t_v2f f, t_v2f s);
 double	deg_to_rad(int degree);
-t_v3f	rotate_x(t_v3f v, double alpha);
-t_v3f	rotate_y(t_v3f v, double beta);
-t_v3f	rotate_z(t_v3f v, double gamma);
+void	rotate_x(t_v3f *v, double alpha);
+void	rotate_y(t_v3f *v, double beta);
+void	rotate_z(t_v3f *v, double gamma);
 
 /**
  * Utils
@@ -117,5 +122,6 @@ int		convert_rgba(int a, int r, int g, int b);
 int		rgb(int r, int g, int b);
 double	percent(int start, int end, int current);
 int		get_light(int start, int end, double percentage);
+int		get_color(t_v2f current, t_v2f start, t_v2f end, t_v2f delta);
 
 #endif

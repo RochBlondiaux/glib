@@ -18,6 +18,7 @@ t_v2f	v2f(int x, int y)
 
 	v.x = x;
 	v.y = y;
+	v.color = rgb(236, 240, 241);
 	return (v);
 }
 

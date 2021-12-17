@@ -14,6 +14,7 @@
 
 void	glib_init(t_window *window)
 {
+	window->mlx = mlx_init();
 	if (!window->mlx)
 	{
 		perror(MLX_ERROR);

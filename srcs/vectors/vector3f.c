@@ -19,6 +19,7 @@ t_v3f	v3f(int x, int y, int z)
 	v.x = x;
 	v.y = y;
 	v.z = z;
+	v.color = -1;
 	return (v);
 }
 
